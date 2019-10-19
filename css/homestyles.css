@@ -1,0 +1,14 @@
+@font-face {
+    /* Main Font */
+    font-family: CaviarDreams;
+    src: url(fonts/CaviarDreams.ttf);
+}
+
+.intro-lead-in {
+    margin-top: 4vh;
+    text-align: center;
+    font-family: CaviarDreams;
+    font-size: 5vh;
+    margin-right: 1vh;
+    font-weight: bold;
+}
