@@ -21,8 +21,8 @@
     <form class="dropdown-menu-staff-select" id="selectstaffmember" action="sendtodatabase.php" method="post">
         <select id="first-choice">
             <option selected value="base">Please Select</option>
-            <option value="office">Office</option>
-            <option value="infield">In-Field</option>
+            <option value="party">South City Party Nibbles</option>
+            <option value="electrical">South City Electrical & Security</option>
         </select>
 
         <br>
@@ -44,11 +44,11 @@
                 var vals = [];
 
                 switch (key) {
-                    case 'office':
-                        vals = data.office.split(",");
+                    case 'party':
+                        vals = data.party.split(",");
                         break;
-                    case 'infield':
-                        vals = data.infield.split(",");
+                    case 'electrical':
+                        vals = data.electrical.split(",");
                         break;
                     case 'base':
                         vals = ['Please choose from above'];
