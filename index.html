@@ -9,12 +9,61 @@
 
     <!-- Main Login Page StyleSheet-->
     <link href="css/homestyles.css" rel="stylesheet">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <title>South City Timesheet Manager</title>
 </head>
 
 <body>
     <div class="intro-lead-in">Welcome, Please sign-in or out below:</div>
+    
+    <!-- Dropdown Menu -->
+    <form class="dropdown-menu-staff-select" id="selectstaffmember" action="sendtodatabase.php" method="post">
+        <select id="first-choice">
+            <option selected value="base">Please Select</option>
+            <option value="office">Office</option>
+            <option value="infield">In-Field</option>
+        </select>
+
+        <br>
+
+        <select id="second-choice">
+            <option>Please choose from above</option>
+        </select>
+        <input type="submit" name="submit" value="Sign in" />
+        <input type="submit" name="submit" value="Sign out" />
+    </form>
+    <script>
+        $("#first-choice").change(function() {
+
+            var $dropdown = $(this);
+
+            $.getJSON("staff/staff.json", function(data) {
+
+                var key = $dropdown.val();
+                var vals = [];
+
+                switch (key) {
+                    case 'office':
+                        vals = data.office.split(",");
+                        break;
+                    case 'infield':
+                        vals = data.infield.split(",");
+                        break;
+                    case 'base':
+                        vals = ['Please choose from above'];
+                }
+
+                var $secondChoice = $("#second-choice");
+                $secondChoice.empty();
+                $.each(vals, function(index, value) {
+                    $secondChoice.append("<option>" + value + "</option>");
+                });
+
+            });
+        });
+
+    </script>
 </body>
 
 </html>
