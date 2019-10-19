@@ -1,0 +1,5 @@
+ip: Server Name
+user: Admin Name
+pass: Password
+
+Database: Database name
