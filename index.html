@@ -18,7 +18,7 @@
     <div class="intro-lead-in">Welcome, Please sign-in or out below:</div>
 
     <!-- Dropdown Menu -->
-    <form class="dropdown-menu-staff-select" id="selectstaffmember" method="post">
+    <form class="dropdown-menu-staff-select" id="selectstaffmember">
         <select id="first-choice">
             <option selected value="base">Please Select</option>
             <option value="party">South City Party Nibbles</option>
@@ -31,11 +31,32 @@
         <select id="second-choice">
             <option>Please choose from above</option>
         </select>
-        <br><br><br><br>
-        <input class="buttons" type="submit" name="submit" value="Sign in" action="sendsignintodatabase.php" />
-        <input class="buttons" type="submit" name="submit" value="Sign out" action="sendsignouttodatabase.php" />
+        <br><br>
+        <div class="Broadcast" id="Broadcast" align="center">
+            <p> </p>
+        </div>
+        <br><br>
+        UserID:
+        <div class="UserID" id="User_ID" align="center">
+            Enter User ID:<input type="text" id="userid" /><br><br>
+            <p> </p>
+        </div>
+        Time_In:
+        <div class="Time_In" name="time_in" id="Time_In" align="center">
+            <p>Time_In:</p>
+        </div>
+        Time_Out:
+        <div class="Time_Out" name="time_out" id="Time_Out" align="center">
+            <p>Time_Out:</p>
+        </div>
+        Day:
+        <div class="Day" name="day" id="Day" align="center">
+            <p>Day:</p>
+        </div>
+        <input class="buttons" type="button" id="signin" name="signin" value="Sign in" onclick="signInButton();" />
+        <input class="buttons" type="button" id="signout" name="singout" value="Sign out" onclick="signOutButton();" />
     </form>
-    
+
     <br><br><br>
 
     <!-- Time -->
@@ -44,6 +65,25 @@
     </div>
 
     <script>
+        function userId() {
+            var userid = document.getElementById("userid").value;
+        }
+
+        function signInButton() {
+            broadcastMessage('Successfully Signed in!');
+            //action="sendsignin.php"
+        }
+
+        function signOutButton() {
+            broadcastMessage('Successfully Signed out!');
+            //action="sendsignout.php"
+        }
+
+        function broadcastMessage(string) {
+
+            document.getElementById('Broadcast').innerHTML = string + ", Sent info to database.";
+        }
+
         $("#first-choice").change(function() {
 
             var $dropdown = $(this);
@@ -103,10 +143,19 @@
             if (nmin <= 9) nmin = "0" + nmin;
             if (nsec <= 9) nsec = "0" + nsec;
 
-            setTimeout(timeLoadFunc, 1000);
+            setTimeout(timeLoadFunc);
 
             function timeLoadFunc() {
                 document.getElementById('currentTime').innerHTML = "" + tday[nday] + ", " + tmonth[nmonth] + " " + ndate + ", " + nyear + " " + nhour + ":" + nmin + ":" + nsec + ap + "";
+
+                //                var userid = user_id;
+                var time_in = nhour + ":" + nmin + ":" + nsec + ap;
+                var time_out = nhour + ":" + nmin + ":" + nsec + ap;
+                var time_day = "" + tday[nday] + ", " + tmonth[nmonth] + " " + ndate;
+
+                document.getElementById('Day').innerHTML = time_day;
+                document.getElementById('Time_In').innerHTML = time_in;
+                document.getElementById('Time_Out').innerHTML = time_out;
             }
         }
 
@@ -115,8 +164,5 @@
             GetClock();
             setInterval(GetClock, 1000);
         }
-
     </script>
-</body>
-
-</html>
+</body></html>

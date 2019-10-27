@@ -1,5 +1,5 @@
-ip: Server Name
-user: Admin Name
+ip: MySQL:3306
+user: TimesheetManager
 pass: Password
 
-Database: Database name
+Database: TimesheetManagerDatabase
